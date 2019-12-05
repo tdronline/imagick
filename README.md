@@ -11,9 +11,10 @@ PHP 5.6 or above
 Imagemagick and pngquant configured in your system.
 Install imagemagick from :  http://www.imagemagick.org
 
-Then you need the relevant pngquant software, I have included the Windows version here. If you are using other destribution please update the _pngquant/pngquant.exe_ 
-
+Then you need the relevant pngquant software.
 From :https://pngquant.org/
+
+In windows add the pngquant.exe location to system variables. 
 
 **How to use**
 

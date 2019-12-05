@@ -28,7 +28,7 @@ function optimizeImage( $path, $name, $maxSize = max_image_size ) {
 		$cmdJPEG = "$magick mogrify -strip -sampling-factor 4:2:0 -strip -filter Triangle -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality $jpgQ -interlace JPEG -colorspace RGB $temp_file";
 
 		// Use PNGQuant https://pngquant.org
-		$cmdPNG = "pngquant\pngquant --strip --force --quality $pngMinQ-$pngMaxQ --output \"$temp_file\" \"$temp_file\"";
+		$cmdPNG = "pngquant --force --quality $pngMinQ-$pngMaxQ --output \"$temp_file\" \"$temp_file\"";
 
 		// Resize command
 		$cmdResize = "$magick mogrify $name  -resize {$maxSize}x{$maxSize}  $temp_file";
@@ -106,14 +106,16 @@ function optimizeImage( $path, $name, $maxSize = max_image_size ) {
 function getImages( $path ) {
 	// Iterate through folders and get file names to an array
 	$objects = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $path ), RecursiveIteratorIterator::SELF_FIRST );
-	if ( ! empty( $objects ) ) {
+	if ( !empty( $objects ) ) {
+		$files = [];
 		foreach ( $objects as $name => $object ) {
 			if ( is_file( $name ) ) {
 				$files[] = addslashes( $name );
 			} else {
-				$files = '';
+				$files[] = '';
 			}
 		}
+
 		if ( is_array( $files ) ) {
 			return json_encode( $files );
 		} else {
