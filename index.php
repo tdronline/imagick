@@ -14,7 +14,7 @@ define('original_files',  "./img-original");
 define('optimized_files', "./img-optimized");
 
 // JPEG Quality (60-90 recomonded)
-define('jpeg_quality', 78);
+define('jpeg_quality', 62);
 
 // PNG Quality
 define('png_max_quality', 80);

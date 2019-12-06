@@ -25,13 +25,13 @@ function optimizeImage( $path, $name, $maxSize = max_image_size ) {
 		}
 
 		// Run Optimisation Commands
-		$cmdJPEG = "$magick mogrify -strip -sampling-factor 4:2:0 -strip -filter Triangle -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality $jpgQ -interlace JPEG -colorspace RGB $temp_file";
+		$cmdJPEG = "$magick mogrify -strip -sampling-factor 4:2:0 -strip -filter Triangle -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality $jpgQ -interlace JPEG -colorspace RGB \"$temp_file\"";
 
 		// Use PNGQuant https://pngquant.org
 		$cmdPNG = "pngquant --force --quality $pngMinQ-$pngMaxQ --output \"$temp_file\" \"$temp_file\"";
 
 		// Resize command
-		$cmdResize = "$magick mogrify $name  -resize {$maxSize}x{$maxSize}  $temp_file";
+		$cmdResize = "$magick mogrify \"$name\"  -resize {$maxSize}x{$maxSize}  \"$temp_file\"";
 
 		// Get image extension
 		if ( isset( $file['extension'] ) ) {
